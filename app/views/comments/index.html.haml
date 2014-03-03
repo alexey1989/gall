@@ -1,0 +1,18 @@
+%h1 Comments
+
+%table.tabstyle1
+  %tr
+    %th Commenter
+    %th Comment
+    %th Picture id
+    %th Time
+    %th
+  - @comments.each do |comment|
+    %tr
+      %td= comment.user.email
+      %td= comment.body
+      %td= image_tag comment.pick.thumb.url(:small)
+      %td= comment.created_at
+      %td= link_to 'Show', pick_path(comment.pick_id)
+
+= paginate @comments

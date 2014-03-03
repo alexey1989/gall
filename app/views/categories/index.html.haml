@@ -1,0 +1,6 @@
+%h1 Listing categories
+%div.list4
+  %ul
+    - @categories.each do |category|
+      %li
+        =link_to category.name.capitalize, category_path(:id => "#{category.name.parameterize}")

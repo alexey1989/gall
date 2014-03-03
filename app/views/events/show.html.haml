@@ -1,0 +1,24 @@
+%h1
+= link_to "Back", events_path, :class=>"btn btn-danger"
+%table.tabstyle1
+  %thead
+    %tr
+      %td
+        User email
+      %td
+        Event
+      %td
+        Time
+  %tbody
+    - @events.each do |event|
+      %tr
+        %td
+          = event.user.email
+        %td
+          - if event.data.empty?
+            = event.event_type.capitalize          
+          -else
+            = event.data[:record_type].to_s+" "+event.data[:record_id].to_s   
+
+        %td
+          = event.created_at

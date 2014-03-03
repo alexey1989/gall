@@ -1,0 +1,30 @@
+%p#notice
+- if flash[:alert]
+  %p.bg-danger 
+    =flash[:alert]
+
+= image_tag  @pick.thumb.url
+%br
+%br
+-if @like.nil?
+  = link_to "Like", create_like_path(params[:id]), :"data-method"=>:post, :class=>"btn btn-success"
+-else
+  = link_to 'Unlike', delete_like_path(params[:id],@like.id), :"data-method"=>:delete, :class=>"btn btn-danger"
+%br
+%br
+
+%h3 Comments
+- @pick.comments.each do |comment|
+  %div.comments
+    %strong user:
+    = comment.user.email
+    %p= comment.body
+  %br
+
+%h3 Add a comment:
+= form_for([@pick, @pick.comments.build]) do |f|
+  %p
+    = f.label :body, "New Comment"
+    = f.text_area :body
+  %p
+    = f.submit "Add Comment"

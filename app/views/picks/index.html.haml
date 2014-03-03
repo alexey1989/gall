@@ -1,0 +1,17 @@
+%h1 Listing picks
+
+%table.table
+  %tr
+    %th Name
+    %th Likes
+    %th
+  - @picks.each do |pick|
+    %tr
+      %td= image_tag pick.thumb.url(:small) 
+      %td
+        = pick.likes
+      %td= link_to 'Show', pick
+
+%br
+
+= paginate @picks

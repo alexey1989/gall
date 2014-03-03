@@ -1,0 +1,30 @@
+%h1 Events
+%table.tabstyle1
+  %tr
+    %th
+      User email
+    %th
+      Navigation
+    %th
+      User time sign in
+    %th
+      User time sign out
+    %th
+      Likes
+    %th
+      Comments
+  - @users.each do |user|
+    %tr
+      %td
+        = user.email
+      %td
+        = link_to 'Navigation', show_event_path(user, 'navigation')
+      %td
+        = link_to 'Sign in', show_event_path(user, 'signin')
+      %td
+        = link_to 'Sign out', show_event_path(user, 'logout')
+      %td
+        = link_to 'Likes', show_event_path(user, 'like')
+      %td
+        = link_to 'Comments', show_event_path(user, 'comment')
+

@@ -1,0 +1,37 @@
+%html
+  %head
+    %title Hamlapp
+    = stylesheet_link_tag :application
+    = javascript_include_tag :application
+    = csrf_meta_tag
+  %body
+    .navbar.navbar-default.navbar-fixed-top.navbar-inverse{:role=>"navigation"}
+      %nav.navbar-inner
+        .container
+          %a.brand{:href=>"/"} Gallery
+          .navbar-collapse
+            %ul.nav.navbar-nav
+              %li.dropdown
+                %a.dropdown-toggle{:href=>"#","data-toggle"=>"dropdown"}
+                  Category
+                  %b.caret
+                %ul.dropdown-menu 
+                  - @categories.each do |category|
+                    %li 
+                      =link_to category.name.capitalize, category_path(:id => "#{category.name.parameterize}")
+              %li
+                =link_to 'Rating', picks_path
+              %li
+                =link_to 'Comments', comments_path
+              %li 
+                =link_to 'Events', events_path
+              %li 
+                -if user_signed_in?
+                  = link_to 'Sign out', destroy_user_session_path, :method => :delete
+                -else
+                  = link_to 'Sign in', new_user_session_path
+    .container
+      .row
+        .span10
+          = yield
+        .span2

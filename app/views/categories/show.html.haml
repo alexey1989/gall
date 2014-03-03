@@ -1,0 +1,7 @@
+%p#notice
+  = notice
+- @picks.each do |pick|
+  = link_to image_tag(pick.thumb.url(:small)), pick
+
+      
+= paginate @picks
