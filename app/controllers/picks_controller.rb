@@ -6,9 +6,10 @@ class PicksController < ApplicationController
   end
 
   def show
-    has_attached_file :avatar,
-    :storage => :dropbox,
-    :dropbox_credentials => Rails.root.join("config/dropbox.yml"),
+    @pick = Pick.find(params[:id])
+    event={:event_type=>'navigation', :record_id=>@pick.id, :record_type=>'Show picture'}
+    History.track_event(current_user.id,event)
+    @like=Like.where(:pick_id=>@pick, :user_id=>current_user.id.to_s).first
   end
 
 end
