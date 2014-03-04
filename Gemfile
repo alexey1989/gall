@@ -66,3 +66,4 @@ group :assets do
 end
 
 gem 'simple_captcha', :git => 'git://github.com/galetahub/simple-captcha.git'
+gem "paperclip-dropbox", ">= 1.1.7"
